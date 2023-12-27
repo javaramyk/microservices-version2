@@ -9,5 +9,5 @@ limitsMicroservice      MicroserviceX     MicroserviceY
 
                     GitRepo
 
-if our microservice has cloud-starter-config ,we need to import spring cloud config server using spring.config.import=optional:configserver:http://localhosy:8888
+if our microservice has cloud-starter-config ,we need to import spring cloud config server using spring.config.import=optional:configserver:http://localhost:8888
 which is default port for spring cloud config server.
