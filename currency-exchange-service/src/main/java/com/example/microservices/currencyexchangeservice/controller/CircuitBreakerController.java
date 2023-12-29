@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @RestController
 public class CircuitBreakerController {
 	private Logger logger = LoggerFactory.getLogger(CircuitBreakerController.class);
 	@GetMapping("/sample-api")
-	@Retry(name="sample-api",fallbackMethod="hardCodeDefault")
+	//@Retry(name="sample-api",fallbackMethod="hardCodeDefault")
+	@CircuitBreaker(name="sample-api",fallbackMethod="hardCodeDefault")
 	public String getSampleRequest() {
 		logger.info("SampleAPI call while CircuitBreaker demo");
 		ResponseEntity<String> response = new RestTemplate().getForEntity("http://localhost:8080/class",String.class);		
